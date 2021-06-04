@@ -1,0 +1,272 @@
+{% extends 'User/Base_General.html' %}
+{% load static %}
+
+
+{% block subbody %}
+
+<div class="container">
+
+  <div class="row text-center">
+    <div class="col-lg-6 offset-lg-3"><h2>HOME APPLIANCES INSURANCE</h2> </div>
+  </div>
+
+    <hr>
+
+   <br>
+
+   <form method="POST" enctype="multipart/form-data">
+     {% csrf_token %}
+  
+
+     <div style="background-color: aquamarine;"><center><strong>Personal Details</strong></center></div>
+
+     <div class="row">
+         
+        <div class="col-md-6 text-center">
+           <div class="">
+              <div class="card-body">
+                  <label>Applicant's Name <span style="color: red;">*</span></label>
+                  <input class="form-control mr-sm-2" type="text" name="Name" placeholder="Applicant Name" required>
+                  <label>Gender <span style="color: red;">*</span></label>
+                  <select name="Gender" class="custom-select d-block w-100" id="Gender" required>
+                     <option value="" disabled selected hidden>Choose Gender</option>
+                       <option value="Male">Male</option>
+                       <option value="Female">Female</option>
+                       <option value="Others">Others</option>
+                     </select>
+                 <label>Mobile <span style="color: red;">*</span></label>
+                 <input class="form-control mr-sm-2" name="Mobile"  type="text" placeholder="Mobile" maxlength="10" required pattern="[1-9]{1}[0-9]{9}" title="Please Enter Valid Number">
+
+              </div>
+        </div>
+        </div> 
+         
+                  <div class="col-md-6 text-center">
+           <div class="">
+              <div class="card-body">
+                 <label>Date Of Birth <span style="color: red;">*</span></label>
+                 <input class="form-control mr-sm-2" type="text" name="Dob" onfocus="(this.type='date')" onblur="(this.type='text')" placeholder="Date Of Birth" required>
+                 <label>Aadhar Number <span style="color: red;">*</span></label> 
+                 <input class="form-control mr-sm-2" name="Aadhar"  type="text" placeholder="Aadhar Number" maxlength="12" required pattern="[1-9]{12}" title="Please Enter Aadhar Number" required>     
+                 <label>Email <span style="color: red;">*</span></label>  
+                 <input class="form-control mr-sm-2" name="Email"  type="email" placeholder="E-mail" value="{{username}}"  readonly>
+                 
+              </div>
+           </div>
+        </div> 
+  
+     </div>
+
+     <br>
+
+    <div style="background-color: aquamarine;"><center><strong>Address Details</strong></center></div>
+
+    <div class="row">
+        
+       <div class="col-md-6 text-center">
+          <div class="">
+             <div class="card-body">
+                <label>Address Line 1 <span style="color: red;">*</span></label> 
+                 <input class="form-control mr-sm-2" type="text" name="Ad1" placeholder="Address Line 1" required>
+                 <label>Address Line 3 <span style="color: red;">*</span></label> 
+                 <input class="form-control mr-sm-2" type="text" name="Ad3" placeholder="Address Line 3" required>
+             </div>
+       </div>
+       </div> 
+        
+       <div class="col-md-6 text-center">
+          <div class="">
+             <div class="card-body">
+                <label>Address Line 2 <span style="color: red;">*</span></label> 
+                <input class="form-control mr-sm-2" type="text" name="Ad2" placeholder="Address Line 2" required>
+                <label>Pin Code <span style="color: red;">*</span></label> 
+                <input class="form-control mr-sm-2" type="text" name="Pin" placeholder="Pincode" maxlength="6" required pattern="[1-9]{1}[0-9]{5}" title="Please Enter Valid Picode">
+             </div>
+          </div>
+       </div> 
+ 
+    </div>
+
+    <br>
+
+    <div style="background-color: aquamarine;"><center><strong>Scheme Details</strong></center></div>
+
+    <br>
+        
+        <div class="card-deck mb-3 text-center">
+            <div class="card mb-4 shadow-sm">
+              <div class="card-header">
+               <input type="radio" class="btn-check" name="plan" autocomplete="off" onchange="handleChange1()" value="Basic">
+                <h4 class="my-0 font-weight-normal">Basic</h4>
+              </div>
+              <div class="card-body">
+                <h1 class="card-title pricing-card-title">₹5000 <small class="text-muted">/ year</small></h1>
+                <ul class="list-unstyled mt-3 mb-4">
+                  <li>1 Plan to Cover Upto 5  Appliances</li>
+                  <li>Include total 5 repairs</li>
+                  <li>10-Day Resolution Guarantee (15 for TV)</li>
+                  <li>Anytime Service Booking - 24x7</li>
+                </ul>
+              </div>
+            </div>
+            <div class="card mb-4 shadow-sm">
+                <div class="card-header">
+                 <input type="radio" class="btn-check" name="plan" value="HomeAssist" onchange="handleChange2()" autocomplete="off" checked>
+                  <h4 class="my-0 font-weight-normal">HomeAssist</h4>
+                </div>
+                <div class="card-body">
+                  <h1 class="card-title pricing-card-title">7000<small class="text-muted">/ year</small></h1>
+                  <ul class="list-unstyled mt-3 mb-4">
+                    <li>1 Plan to Cover Upto 5  Appliances</li>
+                  <li>Unlimited Repairs</li>
+                  <li>10-Day Resolution Guarantee (15 for TV)</li>
+                  <li>Anytime Service Booking - 24x7</li>
+                  </ul>
+                </div>
+              </div>
+            <div class="card mb-4 shadow-sm">
+              <div class="card-header">
+               <input type="radio" class="btn-check" name="plan" value="HomeAssist + Maintenance" onchange="handleChange3()" autocomplete="off" >
+                <h4 class="my-0 font-weight-normal">HomeAssist + Maintenance</h4>
+              </div>
+              <div class="card-body">
+                <h1 class="card-title pricing-card-title">₹10000<small class="text-muted">/ year</small></h1>
+                <ul class="list-unstyled mt-3 mb-4">
+                    <li>1 Plan to Cover Upto 20 Appliances</li>
+                    <li>Unlimited Repairs</li>
+                    <li>10-Day Resolution Guarantee (15 for TV)</li>
+                    <li>Anytime Service Booking - 24x7</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+    <div style="background-color: aquamarine;"><center><strong>Attachment Details</strong></center></div>
+
+    <div class="row">
+        
+       <div class="col-md-6 text-center">
+          <div class="">
+             <div class="card-body">
+                <label>Aadhar Proof Of Applicant (Please upload pdf files only)<span style="color: red;">*</span></label> 
+                <input class="form-control mr-sm-2" name="Ap_Aadhr_Id"  type="file"  id="myid" placeholder="Upload Id Proof" title="Upload Id Proof" required accept="application/pdf" onchange="validatePDF(this)" onblur="return formOK;">
+             </div>
+       </div>
+       </div> 
+        
+       <div class="col-md-6 text-center">
+          <div class="">
+             <div class="card-body">
+                <label>Address Proof (Please upload pdf files only)<span style="color: red;">*</span></label> 
+                <input class="form-control mr-sm-2" name="Address_Id"  type="file"  id="myid" placeholder="Upload Id Proof" title="Upload Id Proof" required accept="application/pdf" onchange="validatePDF(this)" onblur="return formOK;">
+             </div>
+          </div>
+       </div> 
+ 
+    </div>
+
+    <br>
+
+    <div style="background-color: aquamarine;"><center><strong>Enrollment Fee Details</strong></center></div>
+    <br>
+    <div class="row">
+        <div class="col-md-6 text-center">
+           <div class="">
+              <div class="">
+                <label>Enter Card Number <span style="color: red;">*</span></label>
+                <input class="form-control mr-sm-2" name="cardno" type="text" placeholder="Enter Card Number" maxlength="12" required pattern="[1-9]{12}" title="Please Enter Valid Card Number">
+                <label>Expiry Month <span style="color: red;">*</span></label>
+                <select name="Month" class="custom-select d-block w-100" id="Month" required><br>
+                    <option value="" disabled selected hidden>Expiry Month</option>
+                    <option value="january">January</option>
+                     <option value="february">February</option>
+                     <option value="march">March</option>
+                     <option value="april">April</option>
+                     <option value="may">May</option>
+                     <option value="june">June</option>
+                     <option value="july">July</option>
+                     <option value="august">August</option>
+                     <option value="september">September</option>
+                     <option value="october">October</option>
+                     <option value="november">November</option>
+                     <option value="december">December</option>
+                    </select>
+                    <label>Expiry CVV <span style="color: red;">*</span></label>
+                <input type="password" class="mr-sm-2 form-control" name="cvv" id="Cvv" placeholder="Enter CVV" maxlength="3" required required pattern="[1-9]{3}" title="Please Enter Valid CVV">
+</div> </div> </div>
+    <div class="col-md-6 text-center">
+        <div class="">
+           <div class="">
+            <label>Name On Card <span style="color: red;">*</span></label>
+            <input class="form-control mr-sm-2" name="namecard"  type="text" placeholder="Name On Card" required >
+            <label>Expiry Year <span style="color: red;">*</span></label>
+            <select name="Year" class="custom-select d-block w-100" id="Year" required><br>
+                <option value="" disabled selected hidden>Expiry Year</option>
+                <option value="2020">2020</option>
+                <option value="2021">2021</option>
+                <option value="2022">2022</option>
+                <option value="2023">2023</option>
+                <option value="2024">2024</option>
+                <option value="2025">2025</option>
+                <option value="2026">2026</option>
+                <option value="2027">2027</option>
+                <option value="2028">2028</option>
+                <option value="2029">2029</option>
+                <option value="2030">2030</option>
+                </select>
+                <label>Payment Amount <span style="color: red;">*</span></label>
+                <input class="form-control mr-sm-2" name="paid" id="paid" readonly  type="text" placeholder="Payment Amount" required > 
+              </div> </div> </div> </div>
+
+              <br>
+
+             <div class="icon-container">
+                <i class="fa fa-cc-visa" style="color:navy;"></i>
+                <i class="fa fa-cc-amex" style="color:blue;"></i>
+                <i class="fa fa-cc-mastercard" style="color:red;"></i>
+                <i class="fa fa-cc-discover" style="color:orange;"></i>
+            </div>
+
+
+    <br>
+
+    <div class="row">
+        <div class="col-4"></div>
+        <div class="col-4">
+            <input type="submit" class="btn btn-success form-control" value="SUBMIT">
+        </div>
+        <div class="col-4"></div>
+    </div>
+
+  </form>
+
+
+  <script>
+
+    window.onload = function() {
+       document.getElementById("paid").value = "7000"
+     };
+ 
+     function handleChange1() {
+       document.getElementById("paid").value = "5000"
+     }
+ 
+     function handleChange2() {
+       document.getElementById("paid").value = "7000"
+     }
+
+     function handleChange3() {
+        document.getElementById("paid").value = "10000"
+      }
+ 
+ 
+   </script>
+
+  </div>
+    <br>
+    <hr>
+
+  </form>
+  
+
+{% endblock %}

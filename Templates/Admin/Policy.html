@@ -1,0 +1,131 @@
+{% extends 'Admin/Base.html' %}
+{% load static %}
+
+
+{% block head %}
+
+<ul class="nav flex-column">
+  <li class="nav-item">
+    <a class="nav-link " href="{% url 'Admin' %}">
+      <span data-feather="home"></span>
+      Dashboard <span class="sr-only">(current)</span>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'Admin_Life' %}" id="myBtn">
+      <span data-feather="umbrella"></span>
+      Life Insurance
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'Admin_General' %}">
+      <span data-feather="settings"></span>
+      General Insurance
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'Admin_Health' %}">
+      <span data-feather="heart"></span>
+      Health Insurance
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'User' %}">
+      <span data-feather="user"></span>
+      Users
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'Search' %}">
+      <span data-feather="search"></span>
+      Search
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link active" href="{% url 'Policy' %}">
+      <span data-feather="shopping-cart"></span>
+      Policies
+    </a>
+  </li>
+</ul>
+{% endblock %}
+
+    {% block body %}
+
+
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <div class="btn-toolbar mb-2 mb-md-0">
+
+        </div>
+      </div>
+
+        <center><h2>OUR POLICIES</h2></center>
+      <br>
+
+      <div class="table-responsive table-hover">
+      
+        <table class="table table-striped table-sm table-hover">
+          <thead>
+            <tr>
+              <th>Policy No</th>
+              <th>Policy</th>
+              <th>Category</th>
+              <th>Scheme</th>
+              <th>Scheme Amount</th>
+              <th>Maturity Amount</th>
+              <th>Maturity Period</th>
+            </tr>
+          </thead>
+          {% for data in policy %}
+          <tbody>
+            <tr>
+              <td>100{{data.id}}</td>
+              <td>{{data.Policy}}</td>
+              <td>{{data.Category}}</td>
+              <td>{{data.Scheme}}</td>
+              <td>{{data.Scheme_Amount}}</td>
+              <td>{{data.Maturity_Amount}}</td>
+              <td>{{data.Maturity_Period}}</td>
+            </tr>
+          </tbody>
+          {% endfor %}
+        </table>
+      </div>
+      <hr>
+
+      <form action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+      <div class="row">
+        <div class="col-md-6 text-center">
+           <div class="card">
+              <div class="card-body">
+ 
+                  <input class="form-control mr-sm-2" name="Policy" type="text" placeholder="Policy Name" required ><br>
+       
+                  <input class="form-control mr-sm-2" name="Category" type="text" placeholder="Category" required ><br>
+       
+                  <input class="form-control mr-sm-2" name="Scheme" type="text" placeholder="Scheme" required ><br>
+                  
+
+              </div>
+        </div>
+        </div> 
+         
+                  <div class="col-md-6 text-center">
+           <div class="card">
+              <div class="card-body">
+          
+                <input class="form-control mr-sm-2" name="Samount"  type="text" placeholder="Scheme Amount" required ><br>
+                <input class="form-control mr-sm-2" name="Mamount" type="text" placeholder="Maturity Amount"  ><br> 
+                <input class="form-control mr-sm-2" name="Period" type="text" placeholder="Maturity Period In Years"  ><br> 
+                <button type="submit" class="btn btn-primary btn-info btn-md form-control" >Submit</button>
+                
+                 </div> </div> </div>
+                  </div>
+ 
+                </form>
+
+    </main>
+
+    {% endblock %}

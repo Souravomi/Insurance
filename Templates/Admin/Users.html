@@ -1,0 +1,123 @@
+{% extends 'Admin/Base.html' %}
+{% load static %}
+
+
+{% block head %}
+<ul class="nav flex-column">
+  <li class="nav-item">
+    <a class="nav-link " href="{% url 'Admin' %}">
+      <span data-feather="home"></span>
+      Dashboard <span class="sr-only">(current)</span>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link " href="{% url 'Admin_Life' %}" id="myBtn">
+      <span data-feather="umbrella"></span>
+      Life Insurance
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'Admin_General' %}">
+      <span data-feather="settings"></span>
+      General Insurance
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link " href="{% url 'Admin_Health' %}">
+      <span data-feather="heart"></span>
+      Health Insurance
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link active" href="{% url 'User' %}">
+      <span data-feather="user"></span>
+      Users
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'Search' %}">
+      <span data-feather="search"></span>
+      Search
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'Policy' %}">
+      <span data-feather="shopping-cart"></span>
+      Policies
+    </a>
+  </li>
+</ul>
+{% endblock %}
+
+    {% block body %}
+
+
+    {% if messages %}
+       
+           {% for message in messages %}
+
+           <script>
+            alert("No Records Found")
+        </script>
+
+           {% endfor %}
+      
+       {% endif %}
+
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+       
+        <div class="btn-toolbar mb-2 mb-md-0">
+
+        </div>
+      </div>
+
+        <center><h2>USER'S INFORMATION</h2></center>
+      <hr>
+      <form method="POST">
+          {% csrf_token %}
+      
+      <div class="row">
+        <div class="col-3"></div>
+          <div class="col-4">
+            <input class="form-control mr-sm-2" name="username" type="text" placeholder="Search By Username" required><br>
+          </div>
+          <div class="col-3">
+            <button type="submit" class="btn btn-outline-primary"><i class="fa fa-search"></i> Search</button>
+          </div>
+      </div>
+
+    </form>
+      
+      <div class="table-responsive table-hover">
+      
+        <table class="table table-striped table-sm">
+          <thead>
+            <tr>
+              <th>SL No</th>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>E-mail</th>
+              <th>Username</th>
+              <th>Joined Date</th>
+              <th>Last Login</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for data in user %}
+            <tr>
+              <td>{{ forloop.counter }}</td>
+              <td>{{ data.first_name }}</td>
+              <td>{{ data.last_name }}</td>
+              <td>{{ data.email }}</td>
+              <td><a href="">{{data.username }}</a></td>
+              <td>{{ data.date_joined }}</td>
+              <td>{{ data.last_login }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </main>
+
+    {% endblock %}

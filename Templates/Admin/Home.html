@@ -1,0 +1,123 @@
+{% extends 'Admin/Base.html' %}
+{% load static %}
+
+
+{% block head %}
+<ul class="nav flex-column">
+  <li class="nav-item">
+    <a class="nav-link active" href="{% url 'Admin' %}">
+      <span data-feather="home"></span>
+      Dashboard <span class="sr-only">(current)</span>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'Admin_Life' %}" id="myBtn">
+      <span data-feather="umbrella"></span>
+      Life Insurance
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'Admin_General' %}">
+      <span data-feather="settings"></span>
+      General Insurance
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'Admin_Health' %}">
+      <span data-feather="heart"></span>
+      Health Insurance
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'User' %}">
+      <span data-feather="user"></span>
+      Users
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'Search' %}">
+      <span data-feather="search"></span>
+      Search
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'Policy' %}">
+      <span data-feather="shopping-cart"></span>
+      Policies
+    </a>
+  </li>
+</ul>
+{% endblock %}
+
+    {% block body %}
+
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Hai "{{username}}"</h1>
+        <div class="btn-toolbar mb-2 mb-md-0">
+
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-4"></div>
+        <div class="col-4">
+          <center><h2>APPLICATIONS</h2></center>
+        </div>
+        <div class="col-1" ></div>
+        <div class="col-3">
+          <form method="POST">
+            {% csrf_token %}
+          <button type="submit" class="btn btn-success"><i class="fa fa-file-excel-o" aria-hidden="true"></i> Generate Report</button>
+          </form>
+        </div>
+      </div>
+      <br>
+      <div class="table-responsive table-hover">
+      
+        <table class="table table-striped table-sm table-hover">
+          <thead>
+            <tr>
+              <th>Serial No</th>
+              <th>Applications</th>
+              <th>Total Applicants</th>
+              <th>Pending Applicants</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1001</td>
+              <td>Health Applications</td>
+              <td><span style="color: green;">{{ health|length }}</span></td>
+              <td><span style="color: red">{{ health_Pen|length }}</span></td>
+            </tr>
+            <tr>
+              <td>1002</td>
+              <td>Children's Applications</td>
+              <td><span style="color: green;">{{ child|length }}</span></td>
+              <td><span style="color: red">{{ child_Pen|length }}</span></td>
+            </tr>
+            <tr>
+              <td>1003</td>
+              <td>Employee's Applications</td>
+              <td><span style="color: green;">{{ emp|length }}</span></td>
+              <td><span style="color: red">{{ emp_Pen|length }}</span></td>
+            </tr>
+            <tr>
+              <td>1004</td>
+              <td>Appliance's Applications</td>
+              <td><span style="color: green;">{{ app|length }}</span></td>
+              <td><span style="color: red">{{ app_pen|length }}</span></td>
+            </tr>
+            <tr>
+              <td>1005</td>
+              <td>Vehicle's Applications</td>
+              <td><span style="color: green;">{{ veh|length }}</span></td>
+              <td><span style="color: red">{{ veh_pen|length }}</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
+
+    {% endblock %}

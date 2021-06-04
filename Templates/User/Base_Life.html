@@ -1,0 +1,76 @@
+{% extends 'User/Base.html' %}
+{% load static %}
+
+{% block body %}
+
+<br>
+
+<div class="container">
+
+    <div class="row text-center">
+       <div class="col-lg-6 offset-lg-3"><h2>LIFE INSURANCE REGISTRATION</h2> </div>
+    </div>
+    <br>
+
+    <div class="row justify-content-center">
+  
+      <div class ="mt-2 mb-2 ml-2 mr-2"></div>
+    
+      <div class=" card shadow p-3 mb-5 " style="width: 18rem;">
+        <img class="card-img-top" src="{% static 'User/images/icons/boy.svg'%}" alt="Card image cap" height="150px">
+        <div class="card-body">
+          <h5 class="card-title">Children's Policies</h5>
+          <a href="{% url 'Life_Children' %}"class="btn btn-primary" >Register</a>
+        </div>
+      </div>
+    
+      <div class ="mt-2 mb-2 ml-2 mr-2"></div>
+    
+      <div class=" card shadow p-3 mb-5 " style="width: 18rem;">
+        <img class="card-img-top" src="{% static 'User/images/icons/employee.svg'%}" alt="Card image cap" height="150px">
+        <div class="card-body">
+          <h5 class="card-title">Employee's Policies</h5>
+          <a href="{% url 'Life_Employ' %}"class="btn btn-primary" >Register</a>
+        </div>
+      </div>
+    
+    </div>
+
+    <hr>
+
+    {% block subbody %}
+
+
+    {% endblock %}
+
+  </div>
+    <br>
+
+  <script>
+
+    function myFunction() {
+        alert("Make Sure that email id same as your username for explore services")
+    }
+
+  </script>
+
+
+  <script language="JavaScript">
+    var formOK = false;
+    
+    function validatePDF(objFileControl){
+     var file = objFileControl.value;
+     var len = file.length;
+     var ext = file.slice(len - 4, len);
+     if(ext.toUpperCase() == ".PDF"){
+       formOK = true;
+     }
+     else{
+       formOK = false;
+       alert("Only PDF files allowed.");
+       document.getElementById('myid').value="";
+     }     
+    }
+    </script>
+
+{% endblock %}

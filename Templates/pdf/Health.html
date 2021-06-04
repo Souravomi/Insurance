@@ -1,0 +1,87 @@
+{% load static %}
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+    <head>
+        <title>Title</title>
+        <style type="text/css">
+            body {
+                font-weight: 200;
+                font-size: 14px;
+            }
+            .header {
+                font-size: 20px;
+                font-weight: 100;
+                text-align: center;
+                color: #007cae;
+            }
+            .title {
+                font-size: 22px;
+                font-weight: 100;
+               /* text-align: right;*/
+               padding: 10px 20px 0px 20px;  
+            }
+            .title span {
+                color: #007cae;
+            }
+            .details {
+                padding: 10px 20px 0px 20px;
+                text-align: right !important;
+                /*margin-left: 40%;*/
+            }
+            .hrItem {
+                border: none;
+                height: 5px;
+                /* Set the hr color */
+                color: #333; /* old IE */
+                background-color: #fff; /* Modern Browsers */
+            }
+        </style>
+        <style>
+            table, th, td {
+              padding: 5px;
+            }
+            table {
+              border-spacing: 15px;
+            }
+            </style>
+    </head>
+    <body>
+        <div class='wrapper'>
+            <div class='header'>
+                <p class='title'><strong><u>CONFIRMATION LETTER</u></strong></p>
+            </div>
+        </div>
+        <div class='details'>
+            <span style="color: red;"><string>DATE</string></span>     : {{time}}<br>
+            <span style="color: red;"><string>INSURANCE NUMBER</string></span>       : {{data.Insurance_Id}}
+            <hr class='hrItem' />
+        </div>
+        
+        <tr class="information">
+            <td colspan="2">
+                <table>
+                    <tr>
+                        <center><h1>INSURANCE DETAILS</h1></center>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h3>Name &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp:&nbsp&nbsp{{data.Auth_Id.Name}}</h3>
+                            <h3>Date Of Birth &nbsp&nbsp&nbsp:&nbsp&nbsp{{data.Auth_Id.DOB}}</h3>
+                            <h3>Gender &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp:&nbsp&nbsp{{data.Auth_Id.Gender}}</h3>
+                        </td>
+                        <td>
+                            <h3>Category &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp:&nbsp&nbsp{{data.Category}}</h3>
+                            <h3>Scheme &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp :&nbsp&nbsp{{data.Scheme}}</h3>
+                            <h3>Scheme Amount &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp :&nbsp&nbsp{{data.Scheme_Amount}}</h3>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <hr>
+        <p><center><span style="color: green;">CENTRAL DEPARTMENT OF INSURANCE</span></center></p>
+        <p><center>If you have any questions about this invoice , please contact</center></p>
+        <p><center>1800-5555-0000</center></p>
+        <center>administrator.insurance@gov.in</center>
+    </body>
+</html>

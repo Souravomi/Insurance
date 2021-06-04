@@ -1,0 +1,81 @@
+{% extends 'User/Base.html' %}
+{% load static %}
+
+{% block body %}
+      
+     {% if messages %}
+     {% for message in messages %}
+     <br>
+     <div class="alert">
+      <span class="closebtn">&times;</span>  
+     <li class="nav-link" {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+   </div>
+   <br>
+     {% endfor %}
+ {% endif %}
+  
+
+<div class="container mt-5" style="display: flex;
+justify-content: center">
+
+<div class="row justify-content-center">
+  
+  <div class ="mt-2 mb-2 ml-2 mr-2"></div>
+
+  <div class=" card shadow p-3 mb-5 " style="width: 18rem;">
+    <img class="card-img-top" src="{% static 'User/images/icons/responsibility.svg'%}" alt="Card image cap" height="150px">
+    <div class="card-body">
+      <h5 class="card-title">Life Insurance </h5>
+      <p class="card-text">It include Childrens and Employees.</p>
+      <a href="{% url 'Life_Children' %}"class="btn btn-primary" >Register Here</a>
+    </div>
+  </div>
+  
+  <div class ="mt-2 mb-2 ml-2 mr-2"></div>
+
+  <div class="card shadow p-3 mb-5" style="width: 18rem;">
+    <img class="card-img-top" src="{% static 'User/images/icons/family.svg'%}" alt="Card image cap" height="150px">
+    <div class="card-body">
+      <h5 class="card-title">General Insurance</h5>
+      <p class="card-text">It includes Vehicles,Electronic Appliances and Properties/Buildings.</p>
+      <a href="{% url 'Vehicle' %}" class="btn btn-primary">Register Here</a>
+    </div> 
+  </div>
+
+  <div class ="mt-2 mb-2 ml-2 mr-2"></div>
+  
+<div class="card shadow p-3 mb-5 " style="width: 18rem;">
+    <img class="card-img-top" src="{% static 'User/images/icons/insurance.svg'%}" alt="Card image cap" height="150px">
+    <div class="card-body">
+      <h5 class="card-title">Health Insurance</h5>
+      <p class="card-text">It include all health related schemes</p>
+      <a href="{% url 'Health' %}" class="btn btn-primary">Register Here</a>
+    </div>
+  </div>
+
+  <div class ="mt-2 mb-2 ml-2 mr-2"></div>
+
+  <div class=" card shadow p-3 mb-5 " style="width: 18rem;">
+    <img class="card-img-top" src="{% static 'User/images/icons/shield.svg'%}" alt="Card image cap" height="150px">
+    <div class="card-body">
+      <h5 class="card-title">My Policies</h5>
+      <p class="card-text">Claim your insurance policies.</p>
+      <a href="{% url 'Mypolicy' %}"class="btn btn-primary" >Claim Here</a>
+    </div>
+  </div>
+
+  <div class ="mt-2 mb-2 ml-2 mr-2"></div>
+
+  <div class=" card shadow p-3 mb-5 " style="width: 18rem;">
+    <img class="card-img-top" src="{% static 'User/images/icons/financial.svg'%}" alt="Card image cap" height="150px">
+    <div class="card-body">
+      <h5 class="card-title">Policy Payment</h5>
+      <p class="card-text">Py your insurance policies.</p>
+      <a href="{% url 'Payment' %}"class="btn btn-primary" >Pay Here</a>
+    </div>
+  </div>
+
+</div>
+ 
+
+{% endblock %}

@@ -1,0 +1,282 @@
+{% extends 'User/Base.html' %}
+{% load static %}
+
+{% block body %}
+
+<div class="container">
+    <br>
+        <div class="row">
+          <label><strong><span style="color:#534d4d">Profile Details :</span></strong></label>
+      
+          <table class="table table-bordered table-hover table-responsive-lg">
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col">First Name</th>
+                  <th scope="col">Last Name</th>
+                  <th scope="col">Username/E-Mail</th>
+                  <th scope="col">Joined Date</th>
+                  <th scope="col">Last Login</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>{{ user.first_name }}</td>
+                  <td>{{ user.last_name }}</td>
+                  <td>{{ user.username }}</td>
+                  <td>{{ user.date_joined }}</td>
+                  <td>{{ user.last_login }}</td>
+                </tr>
+              </tbody>
+            </table>
+      
+            </div>
+            <br>
+
+            <div class="row">
+              <label><strong><span style="color:#534d4d">My Applications :</span></strong></label>
+          
+              <table class="table table-bordered table-hover table-responsive-lg">
+                  <thead class="thead-dark">
+                    <tr>
+                      <th scope="col">Application ID</th>
+                      <th scope="col">Category</th>
+                      <th scope="col">Scheme</th>
+                      <th scope="col">Amount</th>
+                      <th scope="col">Nominee</th>
+                      <th scope="col">Status</th>
+                      <th scope="col">Applied On</th>
+                    </tr>
+                  </thead>  
+                  <tbody>
+                    {% for app in health_app %}
+                    <tr>
+                      <td>{{ app.Appl_Id }}</td>
+                      <td>{{ app.Category }}</td>
+                      <td>{{ app.Scheme }}</td>
+                      <td>{{ app.Scheme_Amount }}</td>
+                      <td>{{ app.Nom_Name }}</td>
+                      <td>{{ app.App_Status }}</td>
+                      <td>{{ app.Now_Date }}</td>
+                    </tr>
+                    {% endfor %}
+                    {% for app in child_app %}
+                    <tr>
+                      <td>{{ app.Appl_Id }}</td>
+                      <td>{{ app.Category }}</td>
+                      <td>{{ app.Scheme }}</td>
+                      <td>{{ app.Scheme_Amount }}</td>
+                      <td>{{ app.Nom_Name }}</td>
+                      <td>{{ app.App_Status }}</td>
+                      <td>{{ app.Now_Date }}</td>
+                    </tr>
+                    {% endfor %}
+                    {% for app in emp_app %}
+                    <tr>
+                      <td>{{ app.Appl_Id }}</td>
+                      <td>{{ app.Category }}</td>
+                      <td>{{ app.Scheme }}</td>
+                      <td>{{ app.Scheme_Amount }}</td>
+                      <td>{{ app.Nom_Name }}</td>
+                      <td>{{ app.App_Status }}</td>
+                      <td>{{ app.Now_Date }}</td>
+                    </tr>
+                    {% endfor %}
+                    {% for app in app_app %}
+                    <tr>
+                      <td>{{ app.Appl_Id }}</td>
+                      <td>{{ app.Category }}</td>
+                      <td>{{ app.Scheme }}</td>
+                      <td>{{ app.Scheme_Amount }}</td>
+                      <td>{{ app.Nom_Name }}</td>
+                      <td>{{ app.App_Status }}</td>
+                      <td>{{ app.Now_Date }}</td>
+                    </tr>
+                    {% endfor %}
+                    {% for app in veh_app %}
+                    <tr>
+                      <td>{{ app.Appl_Id }}</td>
+                      <td>{{ app.Category }}</td>
+                      <td>{{ app.Scheme }}</td>
+                      <td>{{ app.Scheme_Amount }}</td>
+                      <td>{{ app.Nom_Name }}</td>
+                      <td>{{ app.App_Status }}</td>
+                      <td>{{ app.Now_Date }}</td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+          
+                </div>
+                <br>
+
+    <div class="row">
+    <label><strong><span style="color:#534d4d">Health Policy Details :</span></strong></label>
+
+    <table class="table table-bordered table-hover table-responsive-lg">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Sl No</th>
+            <th scope="col">Policy Number</th>
+            <th scope="col">Policy</th>
+            <th scope="col">Scheme</th>
+            <th scope="col">Scheme Amount</th>
+            <th scope="col">Policy Date</th>
+            <th scope="col">Letter</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for data in health %}
+          <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ data.Insurance_Id }}</td>
+            <td>{{ data.Category }}</td>
+            <td>{{ data.Scheme }}</td>
+            <td>{{ data.Scheme_Amount }}</td>
+            <td>{{ data.Policy_Date }}</td>
+            <td>
+              <form action="{% url 'Download' %}" method="GET">
+                <input type = "text"  hidden value="{{ data.Insurance_Id }}" name="polnum">
+                <button type="submit" class="btn btn-link">Download</button>
+              </form>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+      </div>
+      <br>
+
+      <div class="row">
+        <label><strong><span style="color:#534d4d">Children's Policy Details :</span></strong></label>
+    
+        <table class="table table-bordered table-hover table-responsive-lg">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">Sl No</th>
+                <th scope="col">Policy Number</th>
+                <th scope="col">Policy</th>
+                <th scope="col">Scheme</th>
+                <th scope="col">Scheme Amount</th>
+                <th scope="col">Policy Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for data in child %}
+              <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ data.Insurance_Id }}</td>
+                <td>{{ data.Category }}</td>
+                <td>{{ data.Scheme }}</td>
+                <td>{{ data.Scheme_Amount }}</td>
+                <td>{{ data.Policy_Date }}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+    
+          </div>
+
+          <br>
+
+          <div class="row">
+            <label><strong><span style="color:#534d4d">Employee's Policy Details :</span></strong></label>
+        
+            <table class="table table-bordered table-hover table-responsive-lg">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">Sl No</th>
+                    <th scope="col">Policy Number</th>
+                    <th scope="col">Policy</th>
+                    <th scope="col">Scheme</th>
+                    <th scope="col">Scheme Amount</th>
+                    <th scope="col">Policy Date</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for data in emp %}
+                  <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ data.Insurance_Id }}</td>
+                    <td>{{ data.Category }}</td>
+                    <td>{{ data.Scheme }}</td>
+                    <td>{{ data.Scheme_Amount }}</td>
+                    <td>{{ data.Policy_Date }}</td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+        
+              </div>
+
+              <br>
+
+              <div class="row">
+                <label><strong><span style="color:#534d4d">Appliance's Policy Details :</span></strong></label>
+            
+                <table class="table table-bordered table-hover table-responsive-lg">
+                    <thead class="thead-dark">
+                      <tr>
+                        <th scope="col">Sl No</th>
+                        <th scope="col">Policy Number</th>
+                        <th scope="col">Policy</th>
+                        <th scope="col">Scheme</th>
+                        <th scope="col">Scheme Amount</th>
+                        <th scope="col">Policy Date</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for data in app %}
+                      <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ data.Insurance_Id }}</td>
+                        <td>{{ data.Category }}</td>
+                        <td>{{ data.Scheme }}</td>
+                        <td>{{ data.Scheme_Amount }}</td>
+                        <td>{{ data.Policy_Date }}</td>
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+            
+                  </div>
+
+                  <br>
+
+                  <div class="row">
+                    <label><strong><span style="color:#534d4d">Vehicle Policy Details :</span></strong></label>
+                
+                    <table class="table table-bordered table-hover table-responsive-lg">
+                        <thead class="thead-dark">
+                          <tr>
+                            <th scope="col">Sl No</th>
+                            <th scope="col">Policy Number</th>
+                            <th scope="col">Policy</th>
+                            <th scope="col">Scheme</th>
+                            <th scope="col">Scheme Amount</th>
+                            <th scope="col">Policy Date</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {% for data in veh %}
+                          <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ data.Insurance_Id }}</td>
+                            <td>{{ data.Category }}</td>
+                            <td>{{ data.Scheme }}</td>
+                            <td>{{ data.Scheme_Amount }}</td>
+                            <td>{{ data.Policy_Date }}</td>
+                          </tr>
+                          {% endfor %}
+                        </tbody>
+                      </table>
+                
+                      </div>
+
+                  <br>
+                  <br>
+                  <hr>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,276 @@
+{% extends 'Admin/Base.html' %}
+{% load static %}
+
+
+{% block head %}
+<ul class="nav flex-column">
+  <li class="nav-item">
+    <a class="nav-link " href="{% url 'Admin' %}">
+      <span data-feather="home"></span>
+      Dashboard <span class="sr-only">(current)</span>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'Admin_Life' %}" id="myBtn">
+      <span data-feather="umbrella"></span>
+      Life Insurance
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link active" href="{% url 'Admin_Life_Children_Application' %}">
+      <span data-feather="shopping-bag"></span>
+      Children's Applications
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'Admin_Life_Employee_Application' %}">
+      <span data-feather="briefcase"></span>
+      Employee's Applications
+    </a>
+  </li>
+  <!--<li class="nav-item">
+    <a class="nav-link" href="{% url 'Admin' %}">
+      <span data-feather="shopping-bag"></span>
+      Children's Insurance
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'Admin' %}">
+      <span data-feather="briefcase"></span>
+      Employee's Insurance
+    </a>
+  </li>-->
+  <hr>
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'Admin_General' %}">
+      <span data-feather="settings"></span>
+      General Insurance
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'Admin_Health' %}">
+      <span data-feather="heart"></span>
+      Health Insurance
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'User' %}">
+      <span data-feather="user"></span>
+      Users
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'Search' %}">
+      <span data-feather="search"></span>
+      Search
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'Policy' %}">
+      <span data-feather="shopping-cart"></span>
+      Policies
+    </a>
+  </li>
+</ul>
+{% endblock %}
+
+    {% block body %}
+
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <div class="btn-toolbar mb-2 mb-md-0">
+
+        </div>
+      </div>
+
+        <center><h2>LIFE INSURANCE APPLICATIONS</h2></center>
+      <br>
+      <div class="table-responsive table-hover">
+      <h6><center><span style="color: red;">CHILDREN'S APPLICATIONS</span></center></h6>
+        <table class="table table-striped table-sm">
+          <thead>
+            <tr>
+              <th>Application No</th>
+              <th>Name</th>
+              <th>E mail</th>
+              <th>DOB</th>
+              <th>Gender</th>
+              <th>Scheme</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for data in child %}
+            <tr>
+              <form method="GET" action="{% url 'Admin_Life_Children_Application' %}">
+                <input class="form-control mr-sm-2" type="text" name="childid" value="{{ data.Appl_Id }}" hidden>
+                <td><button name="child" type="submit" class="btn-link">{{ data.Appl_Id }}</button></td>
+               </form>
+              <td>{{ data.App_Name }}</td>
+              <td>{{ data.App_Email }}</td>
+              <td>{{ data.App_DOB }}</td>
+              <td>{{ data.App_Gender }}</td>
+              <td>{{ data.Scheme }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      
+        <br>
+        <hr>
+        <h5><span style="color: red;"><center>POLICY DETAILS OF <strong><u>{{ data.Appl_Id }}</u></strong> </center></span> </h5>
+        <hr>
+        <div class="container">
+  
+          <div style="background-color: aquamarine;"><center><strong>Personal Details</strong></center></div>
+      
+          <div class="row">
+              
+             <div class="col-md-6 text-center">
+                <div class="">
+                   <div class="card-body">
+                       <label>Applicant's Name <span style="color: red;">*</span></label>
+                       <input class="form-control mr-sm-2" type="text" name="Name" value="{{data.App_Name}}" readonly>
+                       <label>Mother's Name <span style="color: red;">*</span></label>
+                       <input class="form-control mr-sm-2" type="text" name="Mother" value="{{data.App_Mother}}" readonly>
+                       <label>Gender <span style="color: red;">*</span></label>
+                       <input class="form-control mr-sm-2" type="text" name="Mother" value="{{data.App_Gender}}" readonly>
+
+                   </div>
+             </div>
+             </div> 
+              
+                       <div class="col-md-6 text-center">
+                <div class="">
+                   <div class="card-body">
+               
+                      <label>Father's Name <span style="color: red;">*</span></label>
+                      <input class="form-control mr-sm-2" type="text" name="Father"  value="{{data.App_Father}}" readonly>
+                      <label>Date Of Birth <span style="color: red;">*</span></label>
+                      <input class="form-control mr-sm-2" type="text" name="Dob" value="{{data.App_DOB}}" readonly>
+                      <label>Email <span style="color: red;">*</span></label>  
+                      <input class="form-control mr-sm-2" name="Email"  type="email"  value="{{data.App_Email}}"  readonly>
+                      
+                   </div>
+                </div>
+             </div> 
+       
+          </div>
+      
+          <br>
+      
+          <div style="background-color: aquamarine;"><center><strong>Nominee Details</strong></center></div>
+      
+          <div class="row">
+              
+             <div class="col-md-6 text-center">
+                <div class="">
+                   <div class="card-body">
+                      <label>Name Of Nominee <span style="color: red;">*</span></label> 
+                       <input class="form-control mr-sm-2" type="text" name="Nominee" value="{{data.Nom_Name}}"  readonly>
+                       <label>Relationship <span style="color: red;">*</span></label> 
+                       <input class="form-control mr-sm-2" type="text" name="Nominee" value="{{data.Relation}}"  readonly>
+                      <label>Aadhar Number <span style="color: red;">*</span></label> 
+                      <input class="form-control mr-sm-2" type="text" name="nomaadhar" value="{{data.Nom_Aadhar}}"  readonly>
+                   </div>
+             </div>
+             </div> 
+              
+             <div class="col-md-6 text-center">
+                <div class="">
+                   <div class="card-body">
+                      <label>Date Of Birth <span style="color: red;">*</span></label> 
+                      <input class="form-control mr-sm-2" name="nommob"  type="text" value="{{data.Nom_DOB}}"  readonly>
+                      <label>Gender <span style="color: red;">*</span></label> 
+                      <input class="form-control mr-sm-2" name="nommob"  type="text" value="{{data.Nom_Gender}}"  readonly>
+                   </div>
+                </div>
+             </div> 
+       
+          </div>
+      
+          <br>
+      
+          <div style="background-color: aquamarine;"><center><strong>Scheme Details</strong></center></div>
+          
+          <div class="row">
+              
+            <div class="col-md-6 text-center">
+               <div class="">
+                  <div class="card-body">
+                     <label>Scheme </label> 
+                      <input class="form-control mr-sm-2" type="text" value="{{data.Scheme}}"  readonly>
+                  </div>
+            </div>
+            </div> 
+             
+            <div class="col-md-6 text-center">
+               <div class="">
+                  <div class="card-body">
+                     <label>Scheme Amount </label> 
+                     <input class="form-control mr-sm-2" name="nommob"  type="text" value="{{data.Scheme_Amount}}"  readonly>
+                  </div>
+               </div>
+            </div> 
+      
+         </div>
+  
+          <br>
+              
+      
+          <div style="background-color: aquamarine;"><center><strong>Attachment Details</strong></center></div>
+      
+          <div class="row">
+              
+             <div class="col-md-6 text-center">
+                <div class="">
+                   <div class="card-body">
+                      <label>Birth Certificate (Please upload pdf files only)<span style="color: red;">*</span></label> 
+                      <a href="{{data.Birth_Id.url}}" class="btn btn-info form-control" target="_blank">View</a>
+                   </div>
+             </div>
+             </div> 
+              
+             <div class="col-md-6 text-center">
+                <div class="">
+                   <div class="card-body">
+                      <label>Aadhar Proof Of Nominee (Please upload pdf files only)<span style="color: red;">*</span></label> 
+                      <a href="{{data.Nom_Aadhar_Id.url}}" class="btn btn-info form-control" target="_blank">View</a>
+                   </div>
+                </div>
+             </div> 
+       
+          </div>
+      
+          <br>
+          <form method="POST" action="{% url 'Admin_Life_Children_Application' %}">
+            {% csrf_token %}
+          
+          <div class="row">
+            <div class="col-2">
+              <input class="form-control mr-sm-2" name="email"  type="text" value="{{data.App_Email}}" required  hidden>
+            </div>
+              <div class="col-4">
+                <select name="Status" class="custom-select d-block w-100" id="Status" required>
+                  <option value="" disabled selected hidden>Choose Status</option>
+                    <option value="Approve">Approve</option>
+                    <option value="Reject">Reject</option>
+                  </select>
+              </div>
+              <div class="col-4">
+                  <input type="submit" class="btn btn-success form-control" value="UPDATE">
+              </div>
+              <div class="col-2"></div>
+          </div>
+  
+        </form>
+          
+          <br>
+          <hr>
+          <br>
+      
+        </div>
+
+    </main>
+
+    {% endblock %}

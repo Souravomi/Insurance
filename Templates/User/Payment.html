@@ -1,0 +1,142 @@
+{% extends 'User/Base.html' %}
+{% load static %}
+
+{% block body %}
+
+<div class="container">
+    <br><br>
+    <form method="POST">
+        {% csrf_token %}
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="col-4">
+            <select name="policy" class="custom-select d-block w-100" id="policy" required><br>
+                <option value="" disabled selected hidden>Get Your Policy</option>
+                {% for data in health %}
+                <option value="{{data.Category}}#{{data.Insurance_Id}}">{{data.Insurance_Id}}</option>
+                {% endfor %}
+                {% for data in child %}
+                <option value="{{data.Category}}#{{data.Insurance_Id}}">{{data.Insurance_Id}}</option>
+                {% endfor %}
+                {% for data in emp %}
+                <option value="{{data.Category}}#{{data.Insurance_Id}}">{{data.Insurance_Id}}</option>
+                {% endfor %}
+                {% for data in app %}
+                <option value="{{data.Category}}#{{data.Insurance_Id}}">{{data.Insurance_Id}}</option>
+                {% endfor %}
+                {% for data in veh %}
+                <option value="{{data.Category}}#{{data.Insurance_Id}}">{{data.Insurance_Id}}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="col-3">
+            <button type="submit" name="search" class="btn btn-primary"><i class="fa fa-search"></i> Search</button>  
+        </div>
+    </div>
+    </form>
+
+    <div class="row">
+    <label><strong><span style="color:#534d4d">Policy Details :</span></strong></label>
+
+    <table class="table table-bordered table-hover table-responsive-lg">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Policy Number</th>
+            <th scope="col">Policy</th>
+            <th scope="col">Scheme</th>
+            <th scope="col">Scheme Amount</th>
+            <th scope="col">Balance Amount</th>
+            <th scope="col">Last Paid</th>
+            <th scope="col">Policy Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{ ins.Insurance_Id }}</td>
+            <td>{{ ins.Category }}</td>
+            <td>{{ ins.Scheme }}</td>
+            <td>{{ account.Scheme_Amount }}</td>
+            <td>{{ account.Balance_Amount }}</td>
+            <td>{{ account.last_Paid }}</td>
+            <td>{{ ins.Policy_Date }}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      </div>
+      <hr>
+      
+      <form action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+
+    <div style="background-color: aquamarine;"><center><strong>Payment Details</strong></center></div>
+    <br>
+    <div class="row">
+        <div class="col-md-6 text-center">
+           <div class="">
+              <div class="">
+                <label>Enter Card Number <span style="color: red;">*</span></label>
+                <input class="form-control mr-sm-2" name="cardno" type="text" placeholder="Enter Card Number" maxlength="12" required pattern="[1-9]{12}" title="Please Enter Valid Card Number">
+                <label>Expiry Month <span style="color: red;">*</span></label>
+                <select name="Month" class="custom-select d-block w-100" id="Month" required><br>
+                    <option value="" disabled selected hidden>Expiry Month</option>
+                    <option value="january">January</option>
+                     <option value="february">February</option>
+                     <option value="march">March</option>
+                     <option value="april">April</option>
+                     <option value="may">May</option>
+                     <option value="june">June</option>
+                     <option value="july">July</option>
+                     <option value="august">August</option>
+                     <option value="september">September</option>
+                     <option value="october">October</option>
+                     <option value="november">November</option>
+                     <option value="december">December</option>
+                    </select>
+                    <label>Expiry CVV <span style="color: red;">*</span></label>
+                <input type="password" class="mr-sm-2 form-control" name="cvv" id="Cvv" placeholder="Enter CVV" maxlength="3" required required pattern="[1-9]{3}" title="Please Enter Valid CVV">
+</div> </div> </div>
+    <div class="col-md-6 text-center">
+        <div class="">
+           <div class="">
+            <label>Name On Card <span style="color: red;">*</span></label>
+            <input class="form-control mr-sm-2" name="namecard"  type="text" placeholder="Name On Card" required >
+            <label>Expiry Year <span style="color: red;">*</span></label>
+            <select name="Year" class="custom-select d-block w-100" id="Year" required><br>
+                <option value="" disabled selected hidden>Expiry Year</option>
+                <option value="2020">2020</option>
+                <option value="2021">2021</option>
+                <option value="2022">2022</option>
+                <option value="2023">2023</option>
+                <option value="2024">2024</option>
+                <option value="2025">2025</option>
+                <option value="2026">2026</option>
+                <option value="2027">2027</option>
+                <option value="2028">2028</option>
+                <option value="2029">2029</option>
+                <option value="2030">2030</option>
+                </select>
+                <label>Payment Amount <span style="color: red;">*</span></label>
+                <input class="form-control mr-sm-2" name="paid"  id="paid" type="text" placeholder="Payment Amount" value="{{amount}}" readonly > 
+              </div> </div> </div> </div>
+
+              <br>
+              <input class="form-control mr-sm-2" name="insurance" hidden required  type="text"  value="{{ ins.Category }}#{{ ins.Insurance_Id }}" readonly > 
+    <div class="row">
+        <div class="col-4"></div>
+        {% if  amount != 0 %}
+        <div class="col-4">
+            <input type="submit" name="pay" class="btn btn-success form-control" value="PAY ₹ {{amount}}">
+        </div>
+        {% endif %}
+        <div class="col-4"></div>
+    </div>
+
+            </form>
+
+            <hr>
+            <br>
+            <br>
+</div>
+
+{% endblock %}
